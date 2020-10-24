@@ -1,0 +1,9 @@
+#ignore all the following file formats
+*.exe
+*.log
+*.json
+*.txt
+#ignore vscode related settings
+.vscode/
+settings/
+config/
