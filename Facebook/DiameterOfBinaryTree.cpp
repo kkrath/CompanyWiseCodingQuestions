@@ -10,17 +10,17 @@ int heightOfBinaryTree(TreeNode* root){
     
 }
 
-int diameterofTree(TreeNode* root){
+pair<int,int> diameterofTree(TreeNode* root){
     if(root == nullptr)
-        return 0;
+        return make_pair(0,0);
     
-    int lHeight = heightOfBinaryTree(root->left);
-    int rHeight = heightOfBinaryTree(root->right);
 
-    int lDiameter = diameterofTree(root->left);
-    int rDiameter = diameterofTree(root->right);
+    pair<int, int> leftheightDiameter = diameterofTree(root->left);
+    pair<int, int> rightHeightDiameter = diameterofTree(root->right);
 
-    return max(max(lDiameter, rDiameter),lHeight + rHeight + 1);
+    int diameter = max(max(leftheightDiameter.first, rightHeightDiameter.first),leftheightDiameter.second + rightHeightDiameter.second );
+    int height =  max(leftheightDiameter.second,rightHeightDiameter.second) + 1;
+    return make_pair(diameter, height);
 }
 
 
@@ -28,6 +28,7 @@ int main(){
     TreeNode* root = new TreeNode(1);
     root->left = new TreeNode(4, new TreeNode(7), new TreeNode(8));
     root->right = new TreeNode(7, new TreeNode(6), new TreeNode(5));
-    cout << "height of tree : " << heightOfBinaryTree(root) << endl;
-    cout << "diameter of a tree : " << diameterofTree(root) << endl;
+    pair<int, int> result = diameterofTree(root);
+    cout << "height of tree : " << result.second << endl;
+    cout<< "diameter of tree: " << result.first << endl;
 }
