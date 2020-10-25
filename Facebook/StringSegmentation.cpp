@@ -31,9 +31,27 @@ bool is_word_break_possible(std::string str, set<std::string> const dictionary, 
     return false;
 }
 
+/* Time complexity is O(n) and space complexity is O(n) */
+
+bool is_word_break_possible(std::string str, set<std::string> const dictionary){
+    int n = str.size();
+    bool dp[n+1]{false};
+    dp[0] = true;
+    for(int i = 1; i < n+1; i++){
+        for(int j = i - 1; j > -1; j--){
+            std::string prefix = str.substr(j,i);
+            if(dp[j] && dictionary.find(prefix) != dictionary.end())
+                dp[i] = true;
+        }
+    }
+    return dp[n];
+}
+
 int main(){
-    std::string str = "abcdefgh";
-    set<std::string> dictionary{"ab", "cd", "abcd", "h"};
+    std::string str = "abcdef";
+    set<std::string> dictionary{"ab", "cd", "abcd", "ef"};
     map<std::string,bool> memo;
-    cout << is_word_break_possible(str, dictionary, memo);
+    // cout << is_word_break_possible(str, dictionary, memo);
+    cout << is_word_break_possible(str, dictionary);
+    
 }
