@@ -1,19 +1,12 @@
 #include<iostream>
 #include<queue>
+#include "TreeNode.h"
 
 using namespace std;
 
 /* This program will conver the binary tree into a doubly linkedlist such that
    the left pointer will point to the previous node and right pointer will point
    to the next node in in-order manne */
-struct TreeNode{
-    int data;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int data):data(data),left(nullptr),right(nullptr){}
-    TreeNode(int data, TreeNode* left, TreeNode* right):data(data),left(left),right(right){}
-};
-
 void convert(TreeNode* root, queue<TreeNode*> &que){
     if(root == nullptr)
         return;
