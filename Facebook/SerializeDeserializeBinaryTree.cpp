@@ -20,7 +20,7 @@ TreeNode* deserialize(std::string serialized_text){
     char *token  = strtok(str, ",");
     while(token != nullptr){
         serialized_nodes.push(token);
-        token  = strtok(str, ",");
+        token  = strtok(NULL, ",");
     }
     return deserialize_helper(serialized_nodes);
 
@@ -44,8 +44,8 @@ TreeNode* deserialize_helper(queue<string> &serialized_node){
 void printTree(TreeNode* root){
     if(root == nullptr){
         cout << "X,";
-    }
         return;
+    }
     cout << root->data << "," ;
     printTree(root->left);
     printTree(root->right);
@@ -56,6 +56,9 @@ int main(){
     root->left = new TreeNode(3, new TreeNode(6), new TreeNode(9));
     root->right = new TreeNode(5, new TreeNode(7), new TreeNode(3));
     std::string serialized  = serialize(root);
-    // root = deserialize(serialized);
-    // cout << endl;
+    cout << serialized;
+    cout << endl;
+    root = deserialize(serialized);
+    printTree(root);
+
 }

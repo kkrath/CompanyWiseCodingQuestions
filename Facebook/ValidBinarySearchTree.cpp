@@ -1,5 +1,5 @@
 #include<iostream>
-#include "TreeNode.h"
+#include "TreeNode.hpp"
 using namespace std;
 
 bool isValidBST(TreeNode* node, int max, int min){
