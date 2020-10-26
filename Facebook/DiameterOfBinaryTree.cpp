@@ -13,8 +13,7 @@ int heightOfBinaryTree(TreeNode* root){
 pair<int,int> diameterofTree(TreeNode* root){
     if(root == nullptr)
         return make_pair(0,0);
-    
-
+        
     pair<int, int> leftheightDiameter = diameterofTree(root->left);
     pair<int, int> rightHeightDiameter = diameterofTree(root->right);
 
